@@ -1,0 +1,56 @@
+version: '3'
+
+# Test composition
+
+services:
+ xserver:
+  image: ${REPOSITORY}xserver
+  ports:
+  - "8080:8080"
+
+ crc:
+  image: ${REPOSITORY}pitch-crc:${PITCH_VERSION}
+  mac_address: ${MAC_ADDRESS}
+  environment:
+  - DISPLAY=${DISPLAY}
+
+ pi1a:
+  image: ${REPOSITORY}start:pi-alpine
+  environment:
+  - LRC_MASTERADDRESS=crc:8989
+  - LRC_SLEEPPERIOD="1"
+  - DISPLAY=${DISPLAY}
+
+ pi1b:
+  image: ${REPOSITORY}start:pi-alpine
+  environment:
+  - LRC_MASTERADDRESS=crc:8989
+  - LRC_SLEEPPERIOD="1:2"
+  - DISPLAY=${DISPLAY}
+
+ pi3a:
+  image: ${REPOSITORY}start:pi-centos7
+  environment:
+  - LRC_MASTERADDRESS=crc:8989
+  - LRC_SLEEPPERIOD="1"
+  - DISPLAY=${DISPLAY}
+
+ pi3b:
+  image: ${REPOSITORY}start:pi-centos7
+  environment:
+  - LRC_MASTERADDRESS=crc:8989
+  - LRC_SLEEPPERIOD="1:2"
+  - DISPLAY=${DISPLAY}
+
+ pi4a:
+  image: ${REPOSITORY}start:pi-debian
+  environment:
+  - LRC_MASTERADDRESS=crc:8989
+  - LRC_SLEEPPERIOD="1"
+  - DISPLAY=${DISPLAY}
+
+ pi4b:
+  image: ${REPOSITORY}start:pi-debian
+  environment:
+  - LRC_MASTERADDRESS=crc:8989
+  - DISPLAY=${DISPLAY}

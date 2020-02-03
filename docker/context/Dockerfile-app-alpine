@@ -1,0 +1,17 @@
+#
+# Copyright 2020 Tom van den Berg (TNO, The Netherlands).
+# SPDX-License-Identifier: Apache-2.0
+#
+
+FROM openjdk:8-alpine
+
+##############################################################
+# Create an image into which the LRC can be mounted.
+# The image holds the application, plus the Java run time.
+##############################################################
+
+#Add fonts for X GUI
+RUN apk add fontconfig ttf-dejavu 
+
+#Install application
+COPY ./application /root/application

@@ -1,0 +1,20 @@
+#
+# Copyright 2020 Tom van den Berg (TNO, The Netherlands).
+# SPDX-License-Identifier: Apache-2.0
+#
+
+FROM alpine:3.3
+
+##############################################################
+# Create an image that can be mounted into the LRC image.
+# The image only holds the application, exposed as a volume.
+##############################################################
+
+#Install application
+COPY ./application /root/application
+
+#Make application available as a volume
+VOLUME ["/root/application"]
+
+#Dummy command
+CMD ["/bin/true"]

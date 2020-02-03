@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+
+ pi-start-alpine:
+  build:
+   context: context
+   dockerfile: Dockerfile-pitch-alpine
+   args:
+   - VERSION=${PITCH_VERSION}
+   - REPOSITORY=${REPOSITORY}
+  image: ${REPOSITORY}start:pi-alpine
+
+ pi-start-centos7:
+  build:
+   context: context
+   dockerfile: Dockerfile-pitch-centos7
+   args:
+   - VERSION=${PITCH_VERSION}
+   - REPOSITORY=${REPOSITORY}
+  image: ${REPOSITORY}start:pi-centos7
+  
+ pi-start-debian:
+  build:
+   context: context
+   dockerfile: Dockerfile-pitch-debian
+   args:
+   - VERSION=${PITCH_VERSION}
+   - REPOSITORY=${REPOSITORY}
+  image: ${REPOSITORY}start:pi-debian

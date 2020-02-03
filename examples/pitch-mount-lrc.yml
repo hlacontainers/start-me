@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+ xserver:
+  image: ${REPOSITORY}xserver
+  ports:
+  - "8080:8080"
+
+ crc:
+  image: ${REPOSITORY}pitch-crc:${PITCH_VERSION}
+  mac_address: ${MAC_ADDRESS}
+  environment:
+  - DISPLAY=${DISPLAY}
+
+ app:
+  image: ${REPOSITORY}start:app-alpine
+  entrypoint: /usr/local/lrc/launch.sh
+  volumes:
+  - mylrc:/usr/local/lrc:nocopy
+  environment:
+  - LRC_MASTERADDRESS=crc:8989
+  - LRC_ENTRYPOINT=/root/application/start.sh
+  - DISPLAY=${DISPLAY}
+  depends_on:
+  - lrc
+
+ lrc:
+  image: ${REPOSITORY}pitch-lrc:${PITCH_VERSION}
+  volumes:
+  - mylrc:/usr/local/lrc
+
+volumes:
+ mylrc:

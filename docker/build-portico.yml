@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+
+ po-start-alpine:
+  build:
+   context: context
+   dockerfile: Dockerfile-portico-alpine
+   args:
+   - VERSION=${PORTICO_VERSION}
+   - REPOSITORY=${REPOSITORY}
+  image: ${REPOSITORY}start:po-alpine
+
+ po-start-debian:
+  build:
+   context: context
+   dockerfile: Dockerfile-portico-debian
+   args:
+   - VERSION=${PORTICO_VERSION}
+   - REPOSITORY=${REPOSITORY}
+  image: ${REPOSITORY}start:po-debian
+
+ po-start-centos7:
+  build:
+   context: context
+   dockerfile: Dockerfile-portico-centos7
+   args:
+   - VERSION=${PORTICO_VERSION}
+   - REPOSITORY=${REPOSITORY}
+  image: ${REPOSITORY}start:po-centos7

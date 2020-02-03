@@ -1,0 +1,19 @@
+#
+# Copyright 2020 Tom van den Berg (TNO, The Netherlands).
+# SPDX-License-Identifier: Apache-2.0
+#
+
+ARG VERSION
+ARG REPOSITORY
+
+FROM ${REPOSITORY}pitch-lrc:${VERSION}-alpine
+
+#Add fonts for X GUI
+RUN apk add fontconfig ttf-dejavu 
+
+#Install application
+COPY ./application /root/application
+
+#Set entrypoint
+ENV LRC_ENTRYPOINT=/root/application/start.sh
+RUN chmod +x /root/application/start.sh

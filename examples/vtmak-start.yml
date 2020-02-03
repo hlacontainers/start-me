@@ -1,0 +1,26 @@
+version: '3'
+
+# Test composition
+
+services:
+ xserver:
+  image: ${REPOSITORY}xserver
+  ports:
+  - "8080:8080"
+
+ rtiexec:
+  image: ${REPOSITORY}vtmak-rtiexec:${VTMAK_VERSION}
+  environment:
+  - DISPLAY=${DISPLAY}
+
+ ma1:
+  image: ${REPOSITORY}start:ma-centos7
+  environment:
+  - LRC_MASTERADDRESS=rtiexec:4000
+  - DISPLAY=${DISPLAY}
+
+ ma2:
+  image: ${REPOSITORY}start:ma-centos7
+  environment:
+  - LRC_MASTERADDRESS=rtiexec:4000
+  - DISPLAY=${DISPLAY}

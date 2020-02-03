@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+ lrc-app:
+  build:
+   context: context
+   dockerfile: Dockerfile-lrc
+  image: ${REPOSITORY}start:lrc
+
+ app-lrc-alpine:
+  build:
+   context: context
+   dockerfile: Dockerfile-app-alpine
+  image: ${REPOSITORY}start:app-alpine
+
+ app-lrc-centos7:
+  build:
+   context: context
+   dockerfile: Dockerfile-app-centos7
+  image: ${REPOSITORY}start:app-centos7

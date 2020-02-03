@@ -1,0 +1,19 @@
+#
+# Copyright 2020 Tom van den Berg (TNO, The Netherlands).
+# SPDX-License-Identifier: Apache-2.0
+#
+
+FROM centos:7
+
+##############################################################
+# Create an image into which the LRC can be mounted.
+# The image holds the application, plus the Java run time.
+##############################################################
+
+# Install Java
+RUN yum update -y \
+	&& yum install -y java-1.8.0-openjdk nc iproute \
+	&& yum clean all
+
+#Install application
+COPY ./application /root/application

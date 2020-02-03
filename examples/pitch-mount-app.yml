@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+ xserver:
+  image: ${REPOSITORY}xserver
+  ports:
+  - "8080:8080"
+
+ crc:
+  image: ${REPOSITORY}pitch-crc:${PITCH_VERSION}
+  mac_address: ${MAC_ADDRESS}
+  environment:
+  - DISPLAY=${DISPLAY}
+
+ lrc:
+  image: ${REPOSITORY}pitch-lrc:${PITCH_VERSION}-alpine
+  volumes:
+  - myapp:/root/application:nocopy
+  environment:
+  - LRC_MASTERADDRESS=crc:8989
+  - LRC_ENTRYPOINT=/root/application/start.sh
+# We do not set DISPLAY since the LRC image lacks the necessary fonts
+  depends_on:
+  - app
+
+ app:
+  image: ${REPOSITORY}start:lrc
+  volumes:
+  - myapp:/root/application
+
+volumes:
+ myapp:

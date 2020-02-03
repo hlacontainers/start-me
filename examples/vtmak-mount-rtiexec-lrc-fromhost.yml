@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+ xserver:
+  image: ${REPOSITORY}xserver
+  ports:
+  - "8080:8080"
+
+# Make sure to delete the Qt files from ${RTI_HOME}/lib/gui
+
+ rtiexec:
+  image: ${REPOSITORY}vtmak-rtiexec:${VTMAK_VERSION}
+  volumes:
+  - ${VTMAK_RTI_HOME}:/usr/local/makRti${VTMAK_VERSION}
+  environment:
+  - DISPLAY=${DISPLAY}
+
+ app:
+  image: ${REPOSITORY}start:app-centos7
+  entrypoint: /usr/local/lrc/launch.sh
+  volumes:
+  - mylrc:/usr/local/lrc:nocopy
+  - ${VTMAK_RTI_HOME}:/usr/local/lrc/code
+  environment:
+  - LRC_MASTERADDRESS=rtiexec:4000
+  - LRC_ENTRYPOINT=/root/application/start.sh
+  - DISPLAY=${DISPLAY}
+  depends_on:
+  - lrc
+
+ lrc:
+  image: ${REPOSITORY}vtmak-lrc:${VTMAK_VERSION}
+  volumes:
+  - mylrc:/usr/local/lrc
+
+volumes:
+ mylrc:

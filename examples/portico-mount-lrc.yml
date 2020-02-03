@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+ xserver:
+  image: ${REPOSITORY}xserver
+  ports:
+  - "8080:8080"
+
+ app1:
+  image: ${REPOSITORY}start:app-alpine
+  entrypoint: /usr/local/lrc/launch.sh
+  volumes:
+  - mylrc:/usr/local/lrc:nocopy
+  environment:
+  - LISTENPORT=8990
+  - LRC_ENTRYPOINT=/root/application/start.sh
+  - DISPLAY=${DISPLAY}
+  depends_on:
+  - lrc
+
+ app2:
+  image: ${REPOSITORY}start:app-alpine
+  entrypoint: /usr/local/lrc/launch.sh
+  volumes:
+  - mylrc:/usr/local/lrc:nocopy
+  environment:
+  - LRC_MASTERADDRESS=app1:8990
+  - LRC_ENTRYPOINT=/root/application/start.sh
+  - DISPLAY=${DISPLAY}
+  depends_on:
+  - lrc
+
+ app3:
+  image: ${REPOSITORY}start:app-alpine
+  entrypoint: /usr/local/lrc/launch.sh
+  volumes:
+  - mylrc:/usr/local/lrc:nocopy
+  environment:
+  - LRC_MASTERADDRESS=app1:8990
+  - LRC_ENTRYPOINT=/root/application/start.sh
+  - DISPLAY=${DISPLAY}
+  depends_on:
+  - lrc
+
+ lrc:
+  image: ${REPOSITORY}portico-lrc:${PORTICO_VERSION}
+  volumes:
+  - mylrc:/usr/local/lrc
+
+volumes:
+ mylrc:
