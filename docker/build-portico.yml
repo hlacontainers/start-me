@@ -9,7 +9,7 @@ services:
    args:
    - VERSION=${PORTICO_VERSION}
    - REPOSITORY=${REPOSITORY}
-  image: ${REPOSITORY}start:po-alpine
+  image: ${REPOSITORY}start:portico-alpine
 
  po-start-debian:
   build:
@@ -18,7 +18,7 @@ services:
    args:
    - VERSION=${PORTICO_VERSION}
    - REPOSITORY=${REPOSITORY}
-  image: ${REPOSITORY}start:po-debian
+  image: ${REPOSITORY}start:portico-debian
 
  po-start-centos7:
   build:
@@ -27,4 +27,4 @@ services:
    args:
    - VERSION=${PORTICO_VERSION}
    - REPOSITORY=${REPOSITORY}
-  image: ${REPOSITORY}start:po-centos7
+  image: ${REPOSITORY}start:portico-centos7

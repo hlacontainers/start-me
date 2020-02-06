@@ -3,10 +3,14 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-ARG VERSION
-ARG REPOSITORY
+# Set default for build-time ARGs
+ARG PITCH_VERSION=free_5_4_5_0
+ARG REPOSITORY=hlacontainers/
 
-FROM ${REPOSITORY}pitch-lrc:${VERSION}-centos7
+#########################
+# Create image
+#########################
+FROM ${REPOSITORY}lrc:pitch-${PITCH_VERSION}-centos7
 
 #Install application
 COPY ./application /root/application

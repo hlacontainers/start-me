@@ -9,7 +9,7 @@ services:
    args:
    - VERSION=${PITCH_VERSION}
    - REPOSITORY=${REPOSITORY}
-  image: ${REPOSITORY}start:pi-alpine
+  image: ${REPOSITORY}start:pitch-alpine
 
  pi-start-centos7:
   build:
@@ -18,7 +18,7 @@ services:
    args:
    - VERSION=${PITCH_VERSION}
    - REPOSITORY=${REPOSITORY}
-  image: ${REPOSITORY}start:pi-centos7
+  image: ${REPOSITORY}start:pitch-centos7
   
  pi-start-debian:
   build:
@@ -27,4 +27,4 @@ services:
    args:
    - VERSION=${PITCH_VERSION}
    - REPOSITORY=${REPOSITORY}
-  image: ${REPOSITORY}start:pi-debian
+  image: ${REPOSITORY}start:pitch-debian

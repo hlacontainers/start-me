@@ -3,10 +3,14 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-ARG VERSION
-ARG REPOSITORY
+# Set default for build-time ARGs
+ARG PORTICO_VERSION=nightly-2016.05.28
+ARG REPOSITORY=hlacontainers/
 
-FROM ${REPOSITORY}portico-lrc:${VERSION}-centos7
+#########################
+# Create image
+#########################
+FROM ${REPOSITORY}lrc:portico-${PORTICO_VERSION}-centos7
 
 #Install application
 COPY ./application /root/application

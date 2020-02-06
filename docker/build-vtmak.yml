@@ -9,5 +9,5 @@ services:
    args:
    - VERSION=${VTMAK_VERSION}
    - REPOSITORY=${REPOSITORY}
-  image: ${REPOSITORY}start:ma-centos7
+  image: ${REPOSITORY}start:vtmak-centos7
  
