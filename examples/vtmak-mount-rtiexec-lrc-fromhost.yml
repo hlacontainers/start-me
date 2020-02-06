@@ -29,7 +29,7 @@ services:
   - lrc
 
  lrc:
-  image: ${REPOSITORY}vtmak-lrc:${VTMAK_VERSION}
+  image: ${REPOSITORY}lrc:vtmak-${VTMAK_VERSION}
   volumes:
   - mylrc:/usr/local/lrc
 

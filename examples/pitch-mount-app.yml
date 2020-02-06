@@ -13,7 +13,7 @@ services:
   - DISPLAY=${DISPLAY}
 
  lrc:
-  image: ${REPOSITORY}pitch-lrc:${PITCH_VERSION}-alpine
+  image: ${REPOSITORY}lrc:pitch-${PITCH_VERSION}-alpine
   volumes:
   - myapp:/root/application:nocopy
   environment:

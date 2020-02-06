@@ -25,7 +25,7 @@ services:
   - lrc
 
  lrc:
-  image: ${REPOSITORY}pitch-lrc:${PITCH_VERSION}
+  image: ${REPOSITORY}lrc:pitch-${PITCH_VERSION}
   volumes:
   - mylrc:/usr/local/lrc
 

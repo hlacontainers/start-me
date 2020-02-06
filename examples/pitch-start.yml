@@ -15,42 +15,42 @@ services:
   - DISPLAY=${DISPLAY}
 
  pi1a:
-  image: ${REPOSITORY}start:pi-alpine
+  image: ${REPOSITORY}start:pitch-alpine
   environment:
   - LRC_MASTERADDRESS=crc:8989
   - LRC_SLEEPPERIOD="1"
   - DISPLAY=${DISPLAY}
 
  pi1b:
-  image: ${REPOSITORY}start:pi-alpine
+  image: ${REPOSITORY}start:pitch-alpine
   environment:
   - LRC_MASTERADDRESS=crc:8989
   - LRC_SLEEPPERIOD="1:2"
   - DISPLAY=${DISPLAY}
 
  pi3a:
-  image: ${REPOSITORY}start:pi-centos7
+  image: ${REPOSITORY}start:pitch-centos7
   environment:
   - LRC_MASTERADDRESS=crc:8989
   - LRC_SLEEPPERIOD="1"
   - DISPLAY=${DISPLAY}
 
  pi3b:
-  image: ${REPOSITORY}start:pi-centos7
+  image: ${REPOSITORY}start:pitch-centos7
   environment:
   - LRC_MASTERADDRESS=crc:8989
   - LRC_SLEEPPERIOD="1:2"
   - DISPLAY=${DISPLAY}
 
  pi4a:
-  image: ${REPOSITORY}start:pi-debian
+  image: ${REPOSITORY}start:pitch-debian
   environment:
   - LRC_MASTERADDRESS=crc:8989
   - LRC_SLEEPPERIOD="1"
   - DISPLAY=${DISPLAY}
 
  pi4b:
-  image: ${REPOSITORY}start:pi-debian
+  image: ${REPOSITORY}start:pitch-debian
   environment:
   - LRC_MASTERADDRESS=crc:8989
   - DISPLAY=${DISPLAY}

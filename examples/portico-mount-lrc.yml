@@ -43,7 +43,7 @@ services:
   - lrc
 
  lrc:
-  image: ${REPOSITORY}portico-lrc:${PORTICO_VERSION}
+  image: ${REPOSITORY}lrc:portico-${PORTICO_VERSION}
   volumes:
   - mylrc:/usr/local/lrc
 

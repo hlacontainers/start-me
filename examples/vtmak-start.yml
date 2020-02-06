@@ -14,13 +14,13 @@ services:
   - DISPLAY=${DISPLAY}
 
  ma1:
-  image: ${REPOSITORY}start:ma-centos7
+  image: ${REPOSITORY}start:vtmak-centos7
   environment:
   - LRC_MASTERADDRESS=rtiexec:4000
   - DISPLAY=${DISPLAY}
 
  ma2:
-  image: ${REPOSITORY}start:ma-centos7
+  image: ${REPOSITORY}start:vtmak-centos7
   environment:
   - LRC_MASTERADDRESS=rtiexec:4000
   - DISPLAY=${DISPLAY}
