@@ -10,8 +10,9 @@ FROM openjdk:8-alpine
 # The image holds the application, plus the Java run time.
 ##############################################################
 
-#Add fonts for X GUI
+# Add fonts for X GUI
 RUN apk add fontconfig ttf-dejavu 
 
-#Install application
+# Install application and ensure start script is executable
 COPY ./application /root/application
+RUN chmod +x /root/application/start.sh

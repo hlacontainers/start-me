@@ -15,5 +15,6 @@ RUN yum update -y \
 	&& yum install -y java-1.8.0-openjdk nc iproute \
 	&& yum clean all
 
-#Install application
+# Install application and ensure start script is executable
 COPY ./application /root/application
+RUN chmod +x /root/application/start.sh

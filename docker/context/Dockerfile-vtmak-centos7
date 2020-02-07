@@ -12,9 +12,9 @@ ARG REPOSITORY=hlacontainers/
 #########################
 FROM ${REPOSITORY}lrc:vtmak-${VTMAK_VERSION}-centos7
 
-#Install application
+# Install application and ensure start script is executable
 COPY ./application /root/application
-
-#Set entrypoint
-ENV LRC_ENTRYPOINT=/root/application/start.sh
 RUN chmod +x /root/application/start.sh
+
+# Set entrypoint
+ENV LRC_ENTRYPOINT=/root/application/start.sh

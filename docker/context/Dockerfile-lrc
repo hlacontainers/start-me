@@ -10,11 +10,12 @@ FROM alpine:3.3
 # The image only holds the application, exposed as a volume.
 ##############################################################
 
-#Install application
+# Install application and ensure start script is executable
 COPY ./application /root/application
+RUN chmod +x /root/application/start.sh
 
-#Make application available as a volume
+# Make application available as a volume
 VOLUME ["/root/application"]
 
-#Dummy command
+# Dummy command
 CMD ["/bin/true"]
