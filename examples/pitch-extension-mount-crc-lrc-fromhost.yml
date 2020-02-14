@@ -9,26 +9,17 @@ services:
  crc:
   image: ${REPOSITORY}pitch-crc:${PITCH_VERSION}
   mac_address: ${MAC_ADDRESS}
+  volumes:
+  - ${PITCH_RTI_HOME}:/usr/local/prti1516e
   environment:
   - DISPLAY=${DISPLAY}
 
- app:
-  image: ${REPOSITORY}start:app-alpine
-  entrypoint: /usr/local/lrc/launch.sh
+ start:
+  image: ${REPOSITORY}start:pitch-alpine
   volumes:
-  - mylrc:/usr/local/lrc:nocopy
   - ${PITCH_RTI_HOME}:/usr/local/lrc/code
   environment:
   - LRC_MASTERADDRESS=crc:8989
   - LRC_ENTRYPOINT=/root/application/start.sh
   - DISPLAY=${DISPLAY}
-  depends_on:
-  - lrc
 
- lrc:
-  image: ${REPOSITORY}lrc:pitch-${PITCH_VERSION}
-  volumes:
-  - mylrc:/usr/local/lrc
-
-volumes:
- mylrc:
