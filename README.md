@@ -34,19 +34,15 @@ The other two images contain only the application code and should be used in the
 
 Several example docker compose files can be found under the examples directory.
 
-Compose files for extension pattern:
+Compose files for the extension pattern:
 
-- `pitch-start.yml` : starts several federate applications using the Pitch RTI. Note that the free RTI has a limit of two applications, so not all applications will be able to join.
+- `<vendor>-extension*.yml` : starts a federate application for the `<vendor>` RTI using the extension pattern. Note that the Pitch and VTMak Free RTIs have a limit of two applications, so not all applications will be able to join.
 
-- `portico-start.yml` : starts several federate applications using the Portico RTI.
 
-- `vtmak-start.yml` : starts several federate applications using the VT MaK RTI.
+Compose files for the two composition patterns:
 
-Compose files for composition patterns:
+- `<vendor>-composition*.yml` : starts a federate application for the `<vendor>` RTI using a composition pattern.
 
-- `<vendor>-mount-app.yml` : starts a federate application where the application volume is mounted into the LRC container.
-
-- `<vendor>-mount-lrc.yml` : starts a federate application where the LRC volume is mounted into the application container.
 
 To run an example, use `docker-compose -f <filename> up`.
 
