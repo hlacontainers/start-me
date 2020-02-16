@@ -6,13 +6,25 @@ services:
   ports:
   - "8080:8080"
 
+ master:
+  image: ${REPOSITORY}start:app-alpine
+  entrypoint: /usr/local/lrc/launch.sh
+  volumes:
+  - porticolrc:/usr/local/lrc:nocopy
+  environment:
+  - LISTENPORT=8990
+  - LRC_ENTRYPOINT=/root/application/start.sh
+  - DISPLAY=${DISPLAY}
+  depends_on:
+  - lrc
+
  app1:
   image: ${REPOSITORY}start:app-alpine
   entrypoint: /usr/local/lrc/launch.sh
   volumes:
-  - mylrc:/usr/local/lrc:nocopy
+  - porticolrc:/usr/local/lrc:nocopy
   environment:
-  - LISTENPORT=8990
+  - LRC_MASTERADDRESS=master:8990
   - LRC_ENTRYPOINT=/root/application/start.sh
   - DISPLAY=${DISPLAY}
   depends_on:
@@ -22,9 +34,9 @@ services:
   image: ${REPOSITORY}start:app-alpine
   entrypoint: /usr/local/lrc/launch.sh
   volumes:
-  - mylrc:/usr/local/lrc:nocopy
+  - porticolrc:/usr/local/lrc:nocopy
   environment:
-  - LRC_MASTERADDRESS=app1:8990
+  - LRC_MASTERADDRESS=master:8990
   - LRC_ENTRYPOINT=/root/application/start.sh
   - DISPLAY=${DISPLAY}
   depends_on:
@@ -34,9 +46,9 @@ services:
   image: ${REPOSITORY}start:app-alpine
   entrypoint: /usr/local/lrc/launch.sh
   volumes:
-  - mylrc:/usr/local/lrc:nocopy
+  - porticolrc:/usr/local/lrc:nocopy
   environment:
-  - LRC_MASTERADDRESS=app1:8990
+  - LRC_MASTERADDRESS=master:8990
   - LRC_ENTRYPOINT=/root/application/start.sh
   - DISPLAY=${DISPLAY}
   depends_on:
@@ -45,7 +57,7 @@ services:
  lrc:
   image: ${REPOSITORY}lrc:portico-${PORTICO_VERSION}
   volumes:
-  - mylrc:/usr/local/lrc
+  - porticolrc:/usr/local/lrc
 
 volumes:
- mylrc:
+ porticolrc:

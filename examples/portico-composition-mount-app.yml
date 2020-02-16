@@ -1,0 +1,59 @@
+version: '3'
+
+services:
+ xserver:
+  image: ${REPOSITORY}xserver
+  ports:
+  - "8080:8080"
+
+ master:
+  image: ${REPOSITORY}lrc:portico-${PORTICO_VERSION}-debian
+  volumes:
+  - myapp:/root/application:nocopy
+  environment:
+  - LISTENPORT=8990
+  - LRC_ENTRYPOINT=/root/application/start.sh
+  - DISPLAY=${DISPLAY}
+  depends_on:
+  - app
+
+ app1:
+  image: ${REPOSITORY}lrc:portico-${PORTICO_VERSION}-alpine
+  volumes:
+  - myapp:/root/application:nocopy
+  environment:
+  - LRC_MASTERADDRESS=master:8990
+  - LRC_ENTRYPOINT=/root/application/start.sh
+# We do not set DISPLAY since the LRC alpine image lacks the necessary fonts
+  depends_on:
+  - app
+
+ app2:
+  image: ${REPOSITORY}lrc:portico-${PORTICO_VERSION}-centos7
+  volumes:
+  - myapp:/root/application:nocopy
+  environment:
+  - LRC_MASTERADDRESS=master:8990
+  - LRC_ENTRYPOINT=/root/application/start.sh
+  - DISPLAY=${DISPLAY}
+  depends_on:
+  - app
+
+ app3:
+  image: ${REPOSITORY}lrc:portico-${PORTICO_VERSION}-debian
+  volumes:
+  - myapp:/root/application:nocopy
+  environment:
+  - LRC_MASTERADDRESS=master:8990
+  - LRC_ENTRYPOINT=/root/application/start.sh
+  - DISPLAY=${DISPLAY}
+  depends_on:
+  - app
+
+ app:
+  image: ${REPOSITORY}start:lrc
+  volumes:
+  - myapp:/root/application
+
+volumes:
+ myapp:

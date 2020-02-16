@@ -4,7 +4,7 @@
 #
 
 # Set default for build-time ARGs
-ARG VTMAK_VERSION=4.5
+ARG VTMAK_VERSION=skeleton
 ARG REPOSITORY=hlacontainers/
 
 #########################

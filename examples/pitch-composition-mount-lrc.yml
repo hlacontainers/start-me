@@ -8,17 +8,29 @@ services:
 
  crc:
   image: ${REPOSITORY}pitch-crc:${PITCH_VERSION}
-  mac_address: ${MAC_ADDRESS}
   volumes:
   - ${PITCH_RTI_HOME}:/usr/local/prti1516e
   environment:
   - DISPLAY=${DISPLAY}
 
- app:
+ start1:
   image: ${REPOSITORY}start:app-alpine
   entrypoint: /usr/local/lrc/launch.sh
   volumes:
-  - mylrc:/usr/local/lrc:nocopy
+  - pitchlrc:/usr/local/lrc:nocopy
+  - ${PITCH_RTI_HOME}:/usr/local/lrc/code
+  environment:
+  - LRC_MASTERADDRESS=crc:8989
+  - LRC_ENTRYPOINT=/root/application/start.sh
+  - DISPLAY=${DISPLAY}
+  depends_on:
+  - lrc
+
+ start2:
+  image: ${REPOSITORY}start:app-centos7
+  entrypoint: /usr/local/lrc/launch.sh
+  volumes:
+  - pitchlrc:/usr/local/lrc:nocopy
   - ${PITCH_RTI_HOME}:/usr/local/lrc/code
   environment:
   - LRC_MASTERADDRESS=crc:8989
@@ -30,7 +42,7 @@ services:
  lrc:
   image: ${REPOSITORY}lrc:pitch-${PITCH_VERSION}
   volumes:
-  - mylrc:/usr/local/lrc
+  - pitchlrc:/usr/local/lrc
 
 volumes:
- mylrc:
+ pitchlrc:

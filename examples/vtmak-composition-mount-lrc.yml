@@ -6,20 +6,33 @@ services:
   ports:
   - "8080:8080"
 
-# Make sure to delete the Qt files from ${RTI_HOME}/lib/gui
+# Make sure to delete the Qt files from ${VTMAK_RTI_HOME}/lib/gui
 
  rtiexec:
   image: ${REPOSITORY}vtmak-rtiexec:${VTMAK_VERSION}
   volumes:
-  - ${VTMAK_RTI_HOME}:/usr/local/makRti${VTMAK_VERSION}
+  - ${VTMAK_RTI_HOME}:/usr/local/makRti
   environment:
   - DISPLAY=${DISPLAY}
 
- app:
+ start1:
   image: ${REPOSITORY}start:app-centos7
   entrypoint: /usr/local/lrc/launch.sh
   volumes:
-  - mylrc:/usr/local/lrc:nocopy
+  - vtmaklrc:/usr/local/lrc:nocopy
+  - ${VTMAK_RTI_HOME}:/usr/local/lrc/code
+  environment:
+  - LRC_MASTERADDRESS=rtiexec:4000
+  - LRC_ENTRYPOINT=/root/application/start.sh
+  - DISPLAY=${DISPLAY}
+  depends_on:
+  - lrc
+
+ start2:
+  image: ${REPOSITORY}start:app-centos7
+  entrypoint: /usr/local/lrc/launch.sh
+  volumes:
+  - vtmaklrc:/usr/local/lrc:nocopy
   - ${VTMAK_RTI_HOME}:/usr/local/lrc/code
   environment:
   - LRC_MASTERADDRESS=rtiexec:4000
@@ -31,7 +44,7 @@ services:
  lrc:
   image: ${REPOSITORY}lrc:vtmak-${VTMAK_VERSION}
   volumes:
-  - mylrc:/usr/local/lrc
+  - vtmaklrc:/usr/local/lrc
 
 volumes:
- mylrc:
+ vtmaklrc:

@@ -30,23 +30,39 @@ The other two images contain only the application code and should be used in the
 | ``LISTENPORT``                   | None | Port to indicate service readiness. | No       |
 | `DISPLAY` | None | The X Display to use. Format: `<address>:0`. | No |
 
-## Run the examples
+## Examples
 
 Several example docker compose files can be found under the examples directory.
 
+### Extension pattern
+
 Compose files for the extension pattern:
 
-- `<vendor>-extension*.yml` : starts a federate application for the `<vendor>` RTI using the extension pattern. Note that the Pitch and VTMak Free RTIs have a limit of two applications, so not all applications will be able to join.
+`<vendor>-extension.yml`
 
+### Application composition pattern
 
-Compose files for the two composition patterns:
+Compose files for the composition pattern where the application container is mounted into the LRC container:
 
-- `<vendor>-composition*.yml` : starts a federate application for the `<vendor>` RTI using a composition pattern.
+`<vendor>-composition-mount-app.yml`
 
+### LRC composition pattern
+
+Compose files for the composition pattern where the LRC container is mounted into the application container:
+
+`<vendor>-composition-mount-lrc.yml`
+
+### Run examples
+
+The examples for the Pitch and VTMaK RTI use skeleton container images. For these vendors the RTI must be installed on the host filesystem first, with the environment variable in the `.env` file set appropriately.
 
 To run an example, use `docker-compose -f <filename> up`.
 
-Note that the Pitch Free RTI displays a message in the X Display that must be confirmed before any federate application can be started.
+Notes with examples:
 
-Also the VTMaK RTI displays a message that must be confirmed before a federate application can start.
+- The Pitch and VTMak Free RTIs have a limit of two applications.
+
+- The Pitch Free RTI displays a message in the X Display that must be confirmed before a federate application can be started.
+
+- Also the VTMaK RTI displays a message that must be closed before a federate application can start.
 
