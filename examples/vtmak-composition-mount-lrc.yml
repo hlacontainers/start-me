@@ -6,12 +6,8 @@ services:
   ports:
   - "8080:8080"
 
-# Make sure to delete the Qt files from ${VTMAK_RTI_HOME}/lib/gui
-
  rtiexec:
   image: ${REPOSITORY}vtmak-rtiexec:${VTMAK_VERSION}
-  volumes:
-  - ${VTMAK_RTI_HOME}:/usr/local/makRti
   environment:
   - DISPLAY=${DISPLAY}
 
@@ -20,7 +16,6 @@ services:
   entrypoint: /usr/local/lrc/launch.sh
   volumes:
   - vtmaklrc:/usr/local/lrc:nocopy
-  - ${VTMAK_RTI_HOME}:/usr/local/lrc/code
   environment:
   - LRC_MASTERADDRESS=rtiexec:4000
   - LRC_ENTRYPOINT=/root/application/start.sh
@@ -33,7 +28,6 @@ services:
   entrypoint: /usr/local/lrc/launch.sh
   volumes:
   - vtmaklrc:/usr/local/lrc:nocopy
-  - ${VTMAK_RTI_HOME}:/usr/local/lrc/code
   environment:
   - LRC_MASTERADDRESS=rtiexec:4000
   - LRC_ENTRYPOINT=/root/application/start.sh

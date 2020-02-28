@@ -10,23 +10,17 @@ services:
 
  rtiexec:
   image: ${REPOSITORY}vtmak-rtiexec:${VTMAK_VERSION}
-  volumes:
-  - ${VTMAK_RTI_HOME}:/usr/local/makRti
   environment:
   - DISPLAY=${DISPLAY}
 
  ma1:
   image: ${REPOSITORY}start:vtmak-centos7
-  volumes:
-  - ${VTMAK_RTI_HOME}:/usr/local/lrc/code
   environment:
   - LRC_MASTERADDRESS=rtiexec:4000
   - DISPLAY=${DISPLAY}
 
  ma2:
   image: ${REPOSITORY}start:vtmak-centos7
-  volumes:
-  - ${VTMAK_RTI_HOME}:/usr/local/lrc/code
   environment:
   - LRC_MASTERADDRESS=rtiexec:4000
   - DISPLAY=${DISPLAY}

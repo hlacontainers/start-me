@@ -7,7 +7,7 @@ services:
    context: context
    dockerfile: Dockerfile-pitch-alpine
    args:
-   - VERSION=${PITCH_VERSION}
+   - PITCH_VERSION=${PITCH_VERSION}
    - REPOSITORY=${REPOSITORY}
   image: ${REPOSITORY}start:pitch-alpine
 
@@ -16,7 +16,7 @@ services:
    context: context
    dockerfile: Dockerfile-pitch-centos7
    args:
-   - VERSION=${PITCH_VERSION}
+   - PITCH_VERSION=${PITCH_VERSION}
    - REPOSITORY=${REPOSITORY}
   image: ${REPOSITORY}start:pitch-centos7
   
@@ -25,6 +25,6 @@ services:
    context: context
    dockerfile: Dockerfile-pitch-debian
    args:
-   - VERSION=${PITCH_VERSION}
+   - PITCH_VERSION=${PITCH_VERSION}
    - REPOSITORY=${REPOSITORY}
   image: ${REPOSITORY}start:pitch-debian
