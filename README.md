@@ -54,7 +54,7 @@ Compose files for the composition pattern where the LRC container is mounted int
 
 ### Run examples
 
-The examples for the Pitch and VTMaK RTI use skeleton container images. For these vendors the RTI must be installed on the host filesystem first, with the environment variable in the `.env` file set appropriately.
+The examples for the Pitch use skeleton container images. For Pitch the RTI must be installed on the host filesystem first, with the environment variable in the `.env` file set appropriately.
 
 To run an example, use `docker-compose -f <filename> up`.
 
