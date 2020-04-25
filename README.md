@@ -1,3 +1,5 @@
+![Build Status](https://img.shields.io/docker/cloud/build/hlacontainers/start)
+
 # Start image
 
 The Start image is a simple HLA federate application that provides a GUI (if specified) to display the names of the joined federates in the federation. The Start image exposes a listen port to indicate service readiness.
