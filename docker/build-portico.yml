@@ -2,15 +2,6 @@ version: '3'
 
 services:
 
- po-start-alpine:
-  build:
-   context: context
-   dockerfile: Dockerfile-portico-alpine
-   args:
-   - PORTICO_VERSION=${PORTICO_VERSION}
-   - REPOSITORY=${REPOSITORY}
-  image: ${REPOSITORY}start:portico-alpine
-
  po-start-debian:
   build:
    context: context

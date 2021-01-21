@@ -10,7 +10,7 @@ ARG REPOSITORY=hlacontainers/
 #########################
 # Create image
 #########################
-FROM ${REPOSITORY}lrc:portico-${PORTICO_VERSION}-centos7
+FROM ${REPOSITORY}lrc:portico-${PORTICO_VERSION}-centos7-jdk11
 
 # Install application and ensure start script is executable
 COPY ./application /root/application

@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-FROM alpine:3.3
+FROM busybox
 
 ##############################################################
 # Create an image that can be mounted into the LRC image.

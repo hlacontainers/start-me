@@ -2,15 +2,6 @@ version: '3'
 
 services:
 
- pi-start-alpine:
-  build:
-   context: context
-   dockerfile: Dockerfile-pitch-alpine
-   args:
-   - PITCH_VERSION=${PITCH_VERSION}
-   - REPOSITORY=${REPOSITORY}
-  image: ${REPOSITORY}start:pitch-alpine
-
  pi-start-centos7:
   build:
    context: context
