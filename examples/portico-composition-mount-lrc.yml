@@ -7,7 +7,7 @@ services:
   - "8080:8080"
 
  master:
-  image: ${REPOSITORY}start:app-alpine
+  image: ${REPOSITORY}start:app-centos7
   entrypoint: /usr/local/lrc/launch.sh
   volumes:
   - porticolrc:/usr/local/lrc:nocopy
@@ -19,7 +19,7 @@ services:
   - lrc
 
  app1:
-  image: ${REPOSITORY}start:app-alpine
+  image: ${REPOSITORY}start:app-centos7
   entrypoint: /usr/local/lrc/launch.sh
   volumes:
   - porticolrc:/usr/local/lrc:nocopy
@@ -31,7 +31,7 @@ services:
   - lrc
 
  app2:
-  image: ${REPOSITORY}start:app-alpine
+  image: ${REPOSITORY}start:app-centos7
   entrypoint: /usr/local/lrc/launch.sh
   volumes:
   - porticolrc:/usr/local/lrc:nocopy
@@ -43,7 +43,7 @@ services:
   - lrc
 
  app3:
-  image: ${REPOSITORY}start:app-alpine
+  image: ${REPOSITORY}start:app-centos7
   entrypoint: /usr/local/lrc/launch.sh
   volumes:
   - porticolrc:/usr/local/lrc:nocopy

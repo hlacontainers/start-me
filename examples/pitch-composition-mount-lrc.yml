@@ -14,7 +14,7 @@ services:
   - DISPLAY=${DISPLAY}
 
  start1:
-  image: ${REPOSITORY}start:app-alpine
+  image: ${REPOSITORY}start:app-centos7
   entrypoint: /usr/local/lrc/launch.sh
   volumes:
   - pitchlrc:/usr/local/lrc:nocopy

@@ -14,14 +14,14 @@ services:
   - DISPLAY=${DISPLAY}
 
  start1:
-  image: ${REPOSITORY}lrc:pitch-${PITCH_VERSION}-alpine
+  image: ${REPOSITORY}lrc:pitch-${PITCH_VERSION}-debian
   volumes:
   - myapp:/root/application:nocopy
   - ${PITCH_RTI_HOME}:/usr/local/lrc/code
   environment:
   - LRC_MASTERADDRESS=crc:8989
   - LRC_ENTRYPOINT=/root/application/start.sh
-# We do not set DISPLAY since the LRC alpine image lacks the necessary fonts
+  - DISPLAY=${DISPLAY}
   depends_on:
   - app
 

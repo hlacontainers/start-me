@@ -18,13 +18,13 @@ services:
   - app
 
  app1:
-  image: ${REPOSITORY}lrc:portico-${PORTICO_VERSION}-alpine
+  image: ${REPOSITORY}lrc:portico-${PORTICO_VERSION}-debian
   volumes:
   - myapp:/root/application:nocopy
   environment:
   - LRC_MASTERADDRESS=master:8990
   - LRC_ENTRYPOINT=/root/application/start.sh
-# We do not set DISPLAY since the LRC alpine image lacks the necessary fonts
+  - DISPLAY=${DISPLAY}
   depends_on:
   - app
 

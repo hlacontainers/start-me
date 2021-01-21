@@ -9,7 +9,7 @@ services:
   - "8080:8080"
 
  master:
-  image: ${REPOSITORY}start:portico-alpine
+  image: ${REPOSITORY}start:portico-debian
   environment:
   - LRC_SLEEPPERIOD=5
   - LISTENPORT=8990
@@ -28,7 +28,7 @@ services:
   - DISPLAY=${DISPLAY}
 
  po3:
-  image: ${REPOSITORY}start:portico-alpine
+  image: ${REPOSITORY}start:portico-centos7
   environment:
   - LRC_MASTERADDRESS=master:8990
   - DISPLAY=${DISPLAY}
